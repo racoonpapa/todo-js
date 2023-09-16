@@ -67,12 +67,10 @@ class TodoItem {
 class TodoList {
     items: Map<string, TodoItem> = new Map();
 
-    toString(): string {
-        const arr: Array<string> = []
+    print() {
         this.items.forEach(item => {
-            arr.push(item.toString())
+            console.log(item.toString())
         })
-        return arr.join("\n")
     }
 
     static fromJson(jsonData: string): TodoList | null {
@@ -107,7 +105,7 @@ try {
     const elapsedFrom = (ended - started) * 0.001
 
     if(items !== null) {
-        console.log(items.toString())
+        items.print()
 
         started = performance.now()
         const newJson= items.toJson()
