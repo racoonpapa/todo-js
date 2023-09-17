@@ -61,11 +61,21 @@ class TodoItem {
         }
         return out
     }
+
+    toJSON(): any {
+        return {
+            "id": this.id,
+            "content": this.content,
+            "due_date": this.dueDate,
+            "priority": this.priority,
+            "done": this.done
+        }
+    }
 }
 
 
 class TodoList {
-    items: Map<string, TodoItem> = new Map();
+    items: Map<string, TodoItem> = new Map()
 
     print() {
         this.items.forEach(item => {
@@ -105,12 +115,14 @@ try {
     const elapsedFrom = (ended - started) * 0.001
 
     if(items !== null) {
-        items.print()
+        // items.print()
 
         started = performance.now()
         const newJson= items.toJson()
         ended = performance.now()
         const elapsedTo = (ended - started) * 0.001
+
+        // console.log(newJson)
 
         console.log(`fromJson - ${elapsedFrom} seconds, toJson - ${elapsedTo} seconds`)
     }
